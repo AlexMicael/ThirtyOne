@@ -1,0 +1,83 @@
+<!-- Alex M. Chen Hsieh, Josh Lim, Irimina Pd. 5,6 - Section 84 (ODD) -->
+<!-- Accessibility: In terms of accessibility, we took great lengths to make sure that the website as a whole is accessible, for example, all of the colors we used contrast greatly, making it easy for those hard of sight to distinguish between the different elements. Additionally, we made sure to follow regular convention by adding lang and alt attributes as necessary. -->
+<!-- Reflection:  This is has been the most complex project we have tackled so far, and the both us vastly underestimated the amount of work it would take to bring the game to fruition. Aside from that, we worked well, divided the work pretty equally, and I think the end result is a pretty complelling game. 
+
+One bug we encountered while testing was that the player and CPU would continue to receive strikes despite being elimminated. At first glance, this doesn't seem like a particularly big issue, but this meant that players that were still in the game were not being eliminated accordingly. In the end, we solved the issue by adding extra conditions to the if statements that verified if that specific player was already eliminated.
+
+Another issue we came across was the game not calculating the sum of the cards correctly. After some testing, we found that the function was not properly adding the values. To fix it, we revised our approach, and eventually came up with a cleaner solution. Rather than calculate each part separately, we split the different sums into their own variables, and compared the totals after they were all calulated.-->
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+	<meta charset="utf-8">
+	<title>ThirtyOne</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Abril+Fatface&family=Nunito&display=swap" rel="stylesheet">
+</head>
+
+<body onload="initialize();">
+	<script src="script.js">
+	</script>
+    <div class="confettiContainer" id="winScreen">
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+	</div>
+	<div class="container">
+		<header>
+            <span id="topText">🂠 ThirtyOne<span>
+            </header>
+		<article>
+			<p1 id="message">card game go brrrr</p1><br>
+			<span style="color:red;">&hearts;</span> &spades; <span style="color:red;">&diams;</span> &clubs;
+            <br><br>
+            <div class="cardDisplay">
+                <div id="pile"></div>
+            </div>    
+            <p><b>🃏 your hand:<b></p>
+            <div class="cardDisplay">
+                <div id="playerHand"></div>
+            </div>
+        </article>
+        <aside>
+            <span id="pStrikes">player strikes:</span>
+            <span id="cpu1Strikes">cpu 1 strikes:</span>
+            <span id="cpu2Strikes">cpu 2 strikes:</span>
+            <span id="cpu3Strikes">cpu 3 strikes:</span>
+            <br><br>
+            <a class="button" onclick="hit();">+ Hit</a><br>
+            <a class="button2" onclick="discard2();">+ Discard</a><br>
+            <a class="button" onclick="playerKnock = true; cpuTurn1; cpuTurn2; cpuTurn3; knock(); console.log(playerEliminated);">✕ Knock</a><br>
+            <a class="button2" onClick="window.location.reload(); ">⭮ Reset</a><br>
+        </aside>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CPU1-3 Has Knocked!</h2>
+            </div>
+            <div class="modal-body">
+                <p>This is the Final Turn of Round</p>
+                <p>Pick Hit or Discard to Continue!</p>
+            </div>
+            <div class="modal-footer">
+                <h3 class="button-rack">
+                    <a class="button" id="hitID" onclick="lastHit()">+ Hit</a>
+                    <a class="button" id="discardID" onclick="lastDiscardButton()">+ Discard</a>
+                </h3>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
